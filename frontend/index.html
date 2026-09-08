@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container active" id="screen1">
+        <h1>Kanban Board</h1>
+        <div class="board">
+        <div class="todo-container">
+            <div class="list" id="list1">
+                <h2>To Do</h2>
+            </div>
+            <button id="add-btn">Add Item</button>
+        </div>
+        <div class="list" id="list2">
+            <h2>In Progress</h2>
+        </div>
+        <div class="list" id="list3">
+            <h2>Done</h2>
+        </div>
+        </div>
+    </div>
+    <div class="container" id="screen2">
+        <h1>New Item</h1>
+        <div id="add">
+            <div class="form-row">
+                <p>New Item name</p>
+                <input type="text" id="lname" name="lname">
+            </div>
+            <div class="form-row">
+                <p>New Item status</p>
+                <select name="label" id="label-select">
+                    <option value="">--Please choose a label--</option>
+                    <option value="ToDo">ToDo</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Done">Done</option>
+                 </select>
+             </div>
+             <div class="form-row">
+                <p>New Item priority</p>
+                <select id="priority">
+                    <option value="">Select priority</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+             </div>
+             <p id="error-message"></p>
+         <button id="item-btn">Add Item</button>
+         <button id="back-btn">Back</button>
+     </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

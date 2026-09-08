@@ -1,0 +1,200 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #f7f9fc;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    padding: 1.2rem;
+    text-align: center;
+    display: none;
+}
+
+.container.active{
+    display: block;
+}
+
+h1 {
+    color: black;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.list {
+    background-color: #c4c4c5;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 30%;
+    color: black;
+    min-height: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.list h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.card {
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: grab;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+     gap: 10px;
+}
+
+.card:active {
+    cursor: grabbing;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.list.over {
+    background-color: #d1d3d8;
+}
+
+#list3 h2 {
+    color: rgb(8, 164, 8);
+}
+
+#list2 h2 {
+    color: rgb(222, 238, 4);
+}
+
+#list1 h2 {
+    color: red;
+}
+
+.todo-container {
+    width: 30%;
+    align-self: flex-start;
+}
+
+.todo-container .list {
+    width: 100%;
+}
+
+#add-btn {
+    padding: 0.7rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: none;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+
+#screen2{
+    background-color: #c4c4c5;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 20%;
+    color: black;
+    min-height: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 330px;
+}
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-row p {
+    width: 120px;
+    text-align: left;
+}
+
+#item-btn{
+    padding: 0.7rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: none;
+    margin-top: 30px;
+    cursor: pointer;
+    display: block;
+}
+
+#back-btn {
+    padding: 0.7rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: none;
+    margin-top: 30px;
+    cursor: pointer;
+    display: block;
+}
+
+#error-message{
+    color: red;
+}
+
+.card button {
+  margin-left: auto;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.task-priority {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.priority-high {
+    background-color: #ffcccc;
+}
+
+.priority-medium {
+    background-color: #fff0b3;
+}
+
+.priority-low {
+    background-color: #ccffcc;
+}
+
+@media (max-width: 768px) {
+
+    .board {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .todo-container {
+        width: 80%;
+    }
+
+    .list {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}

@@ -1,27 +1,20 @@
 # DevBoard
 
-DevBoard is a simple Kanban-style task management application.
+Eine Full-Stack-Anwendung zur Verwaltung von Aufgaben im Kanban-Stil.
 
 ## Features
 
-- Create tasks
-- Edit tasks
-- Delete tasks
-- Set task priority
-- Change task status
-- Drag & Drop between Kanban columns
-- Persistent storage with SQLite
-- REST API with Express
+- Aufgaben erstellen, bearbeiten und löschen
+- Aufgaben nach Statis und Prioritiät verwalten
+- Drap & Drop
+- Persistente Speicherung der Aufgaben
 
 ## Tech Stack
 
-- TypeScript
-- Node.js
-- Express
-- SQLite
-- HTML
-- CSS
-- REST API
+- Frontend: TypeScript
+- Backend: Node.js, Express
+- API: REST
+- Datenbank: SQLite
 
 ## Architecture
 

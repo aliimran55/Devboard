@@ -22,13 +22,38 @@ Frontend → REST API → Express → SQLite
 
 ## How to run
 
+### Option 1: Run with Docker (Recommended)
+
+#### Start the application
+
+Clone the repository:
+
+```bash
+git clone https://github.com/aliimran55/Devboard.git
+cd Devboard
+```
+
+Build the Docker images and start the containers:
+
+```bash
+docker compose up --build
+```
+
+Access the application
+
+- Frontend: http://localhost:8080
+- Backend: http://localhost:3000
+
+### Option 1: Run Locally
+
 ### Backend
+
 ```bash
 cd backend
 npm install
 npx tsx server.ts
 
-The backend runs on: 
+The backend runs on:
 
 http//localhost:3000
 ```

@@ -5,7 +5,7 @@ Eine Full-Stack-Anwendung zur Verwaltung von Aufgaben im Kanban-Stil.
 ## Features
 
 - Aufgaben erstellen, bearbeiten und löschen
-- Aufgaben nach Statis und Prioritiät verwalten
+- Aufgaben nach Status und Prioritiät verwalten
 - Drap & Drop
 - Persistente Speicherung der Aufgaben
 
@@ -44,7 +44,7 @@ Access the application
 - Frontend: http://localhost:8080
 - Backend: http://localhost:3000
 
-### Option 1: Run Locally
+### Option 2: Run Locally
 
 ### Backend
 

@@ -29,3 +29,7 @@ jobs:
 
       - name: TypeScipt überprüfen
         run: npx tsc --noEmit
+
+      - name: Docker Image bauen
+        working-directory: .
+        run: docker compose build

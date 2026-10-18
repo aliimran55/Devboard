@@ -1,5 +1,6 @@
 services:
   frontend:
+    image: ghcr.io/aliimran55/devboard-frontend:latest
     build: ./frontend
     ports: 
       - "3000:3000"
@@ -7,6 +8,7 @@ services:
       - backend
 
   backend:
+    image: ghcr.io/aliimran55/devboard-backend:latest
     build: ./backend
     ports: 
       - "8080:80"

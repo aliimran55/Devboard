@@ -1,5 +1,9 @@
 name: DevBoard Backend CI
 
+permissions:
+  contents: read
+  packages: write
+
 "on":
   push:
     branches: [main]
@@ -33,3 +37,13 @@ jobs:
       - name: Docker Image bauen
         working-directory: .
         run: docker compose build
+
+      - name: Bei GitHub Container Registry anmelden
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker Image veröffentlichen
+        run: docker compose push

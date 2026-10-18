@@ -1,6 +1,6 @@
 name: DevBoard Backend CI
 
-on:
+"on":
   push:
     branches: [main]
 

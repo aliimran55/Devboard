@@ -71,13 +71,13 @@ stages:
           --password-stdin
 
         echo "Neue Images herunterladen:"
-        docker compose pull
+        docker compose -p devboard pull
 
         echo "App aktualisieren:"
-        docker compose up -d
+        docker compose -p devboard up -d
 
         echo "Containerstatus:"
-        docker compose ps
+        docker compose -p devboard ps
       displayName: 'Images herunterladen und App aktualisieren'
       env:
         GHCR_USERNAME: $(GHCR_USERNAME)

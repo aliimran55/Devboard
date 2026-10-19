@@ -42,27 +42,43 @@ stages:
     - script: docker compose push
       displayName: 'Docker-Images veröffentlichen'
 
-- stage: TestMacAgent
-  displayName: 'Mac-Agent testen'
+- stage: Deploy
+  displayName: 'App auf dem Mac deployen'
   dependsOn: Build
   condition: succeeded()
 
   jobs:
-  - job: CheckMac
-    displayName: 'Docker auf dem Mac prüfen'
+  - job: DeployToMac
+    displayName: 'Devboard aktualisieren'
     pool:
       name: Devboard Mac
 
     steps:
-    - script: |
-        echo "Hostname:"
-        hostname
+    - checkout: self
 
-        echo ""
+    - script: |
+        set -e
+
         echo "Docker-Version:"
         docker --version
 
-        echo ""
         echo "Docker Compose-Version:"
         docker compose version
-      displayName: 'Mac-Agent und Docker prüfen'
+
+        echo "GHCR-Anmeldung:"
+        echo "$GHCR_TOKEN" | docker login ghcr.io \
+          --username "$GHCR_USERNAME" \
+          --password-stdin
+
+        echo "Neue Images herunterladen:"
+        docker compose pull
+
+        echo "App aktualisieren:"
+        docker compose up -d
+
+        echo "Containerstatus:"
+        docker compose ps
+      displayName: 'Images herunterladen und App aktualisieren'
+      env:
+        GHCR_USERNAME: $(GHCR_USERNAME)
+        GHCR_TOKEN: $(GHCR_TOKEN)

@@ -1,0 +1,28 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  displayName: 'Node.js einrichten'
+  inputs:
+    versionSpec: '22.x'
+
+- script: npm install
+  displayName: 'Backend Abhängigkeiten installieren'
+  workingDirectory: backend
+
+- script: npx tsc --noEmit
+  displayName: 'TypeScript überprüfen'
+  workingDirectory: backend
+
+- script: docker compose build
+  displayName: 'Docker-Images bauen'
+  

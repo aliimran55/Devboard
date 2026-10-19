@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: NodeTool@0
+- task: UseNode@1
   displayName: 'Node.js einrichten'
   inputs:
     versionSpec: '22.x'

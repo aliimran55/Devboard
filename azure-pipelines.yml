@@ -1,45 +1,68 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
-
-pool:
-  vmImage: ubuntu-latest
 
 variables:
   - group: ghcr-credentials
 
-steps:
-- task: NodeTool@0
-  displayName: 'Node.js einrichten'
-  inputs:
-    versionSpec: '22.x'
+stages:
+- stage: Build
+  displayName: 'Build und Images veröffentlichen'
+  jobs:
+  - job: BuildAndPush
+    displayName: 'Build und Push auf GHCR'
+    pool:
+      vmImage: ubuntu-latest
 
-- script: npm install
-  displayName: 'Backend Abhängigkeiten installieren'
-  workingDirectory: backend
+    steps:
+    - task: NodeTool@0
+      displayName: 'Node.js einrichten'
+      inputs:
+        versionSpec: '22.x'
 
-- script: npx tsc --noEmit
-  displayName: 'TypeScript überprüfen'
-  workingDirectory: backend
+    - script: npm install
+      displayName: 'Backend Abhängigkeiten installieren'
+      workingDirectory: backend
 
-- script: |
-    docker compose build
-  displayName: 'Docker-Images bauen'
+    - script: npx tsc --noEmit
+      displayName: 'TypeScript überprüfen'
+      workingDirectory: backend
 
-- script: |
-    echo "$GHCR_TOKEN" | docker login ghcr.io \
-      --username "$GHCR_USERNAME" \
-      --password-stdin
-  displayName: 'Bei GitHub Container Registry anmelden'
-  env:
-    GHCR_USERNAME: $(GHCR_USERNAME)
-    GHCR_TOKEN: $(GHCR_TOKEN)
+    - script: docker compose build
+      displayName: 'Docker-Images bauen'
 
-- script: |
-    docker compose push
-  displayName: 'Docker-Images veröffentlichen'
-  
+    - script: |
+        echo "$GHCR_TOKEN" | docker login ghcr.io \
+          --username "$GHCR_USERNAME" \
+          --password-stdin
+      displayName: 'Bei GitHub Container Registry anmelden'
+      env:
+        GHCR_USERNAME: $(GHCR_USERNAME)
+        GHCR_TOKEN: $(GHCR_TOKEN)
+
+    - script: docker compose push
+      displayName: 'Docker-Images veröffentlichen'
+
+- stage: TestMacAgent
+  displayName: 'Mac-Agent testen'
+  dependsOn: Build
+  condition: succeeded()
+
+  jobs:
+  - job: CheckMac
+    displayName: 'Docker auf dem Mac prüfen'
+    pool:
+      name: Devboard Mac
+
+    steps:
+    - script: |
+        echo "Hostname:"
+        hostname
+
+        echo ""
+        echo "Docker-Version:"
+        docker --version
+
+        echo ""
+        echo "Docker Compose-Version:"
+        docker compose version
+      displayName: 'Mac-Agent und Docker prüfen'

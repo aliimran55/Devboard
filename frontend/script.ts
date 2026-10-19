@@ -111,7 +111,7 @@ async function dragDrop(this: HTMLElement,event: DragEvent): Promise<void> {
 
   try {
     const response = await fetch(
-      `http://localhost:3000/api/tasks/${id}`,
+      `http://localhost:8080/api/tasks/${id}`,
       {
         method: "PUT",
         headers: {
@@ -258,8 +258,8 @@ async function addItem(): Promise<void> {
   try {
     // POST für neue Tasks, PUT für bestehende Tasks.
     const url = editingTaskId === null
-      ? "http://localhost:3000/api/tasks"
-      : `http://localhost:3000/api/tasks/${editingTaskId}`;
+      ? "http://localhost:8080/api/tasks"
+      : `http://localhost:8080/api/tasks/${editingTaskId}`;
 
     const method = editingTaskId === null ? "POST" : "PUT";
 
@@ -336,7 +336,7 @@ async function addItem(): Promise<void> {
 // und anhand ihres Status auf die drei Kanban-Listen verteilt.
 async function loadTasks(): Promise<void> {
   try {
-    const response = await fetch("http://localhost:3000/api/tasks");
+    const response = await fetch("http://localhost:8080/api/tasks");
     if (!response.ok) {
       throw new Error("Tasks konnten nicht geladen werden");
     }
@@ -364,7 +364,7 @@ loadTasks();
 async function deleteTask(taskId: number): Promise<void> {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/tasks/${taskId}`,
+      `http://localhost:8080/api/tasks/${taskId}`,
       {
         method: "DELETE"
       }

@@ -6,8 +6,10 @@ services:
     image: ghcr.io/aliimran55/devboard-backend:latest
     ports:
       - "8080:3000"
+    environment:
+      DB_PATH: /data/devboard.db
     volumes:
-      - /Users/macbook/devboard-data/devboard.db:/app/devboard.db
+      - devboard-data:/data
 
   frontend:
     build:
@@ -18,3 +20,6 @@ services:
       - backend
     ports:
       - "3000:80"
+
+volumes:
+  devboard-data:

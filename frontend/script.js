@@ -81,7 +81,7 @@ async function dragDrop(event) {
     }
     console.log("Neuer Status:", status);
     try {
-        const response = await fetch(`http://localhost:3000/api/tasks/${id}`, {
+        const response = await fetch(`http://localhost:8080/api/tasks/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -188,8 +188,8 @@ async function addItem() {
     try {
         // POST für neue Tasks, PUT für bestehende Tasks.
         const url = editingTaskId === null
-            ? "http://localhost:3000/api/tasks"
-            : `http://localhost:3000/api/tasks/${editingTaskId}`;
+            ? "http://localhost:8080/api/tasks"
+            : `http://localhost:8080/api/tasks/${editingTaskId}`;
         const method = editingTaskId === null ? "POST" : "PUT";
         const response = await fetch(url, {
             method: method,
@@ -248,7 +248,7 @@ async function addItem() {
 // und anhand ihres Status auf die drei Kanban-Listen verteilt.
 async function loadTasks() {
     try {
-        const response = await fetch("http://localhost:3000/api/tasks");
+        const response = await fetch("http://localhost:8080/api/tasks");
         if (!response.ok) {
             throw new Error("Tasks konnten nicht geladen werden");
         }
@@ -276,7 +276,7 @@ async function loadTasks() {
 loadTasks();
 async function deleteTask(taskId) {
     try {
-        const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+        const response = await fetch(`http://localhost:8080/api/tasks/${taskId}`, {
             method: "DELETE"
         });
         if (!response.ok) {

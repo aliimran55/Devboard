@@ -3,14 +3,16 @@ services:
     image: ghcr.io/aliimran55/devboard-frontend:latest
     build: ./frontend
     ports: 
-      - "3000:3000"
+      - "3000:80"
     depends_on:
       - backend
 
-  backend:
-    image: ghcr.io/aliimran55/devboard-backend:latest
-    build: ./backend
-    ports: 
-      - "8080:80"
-    volumes:
-      - ./backend:/devboard.db:/app/devboard.db
+backend:
+  build:
+    context: ./backend
+    dockerfile: Dockerfile
+  image: ghcr.io/aliimran55/devboard-backend:latest
+  ports:
+    - "8080:3000"
+  volumes:
+    - /Users/macbook/devboard-data/devboard.db:/app/devboard.db

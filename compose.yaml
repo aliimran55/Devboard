@@ -4,6 +4,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     image: ghcr.io/aliimran55/devboard-backend:latest
+    platform: linux/amd64
     ports:
       - "8080:3000"
     environment:
@@ -16,6 +17,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     image: ghcr.io/aliimran55/devboard-frontend:latest
+    platform: linux/amd64
     depends_on:
       - backend
     ports:

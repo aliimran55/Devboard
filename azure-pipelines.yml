@@ -58,6 +58,7 @@ stages:
 
     - script: |
         set -e
+        export PATH="$HOME/.docker/bin:$PATH"
 
         echo "Docker-Version:"
         docker --version
